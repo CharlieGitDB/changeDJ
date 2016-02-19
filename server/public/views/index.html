@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChangeDJ</title>
+  <link rel="stylesheet" href="styles/logreg.css"/>
+  <link rel="stylesheet" href="styles/main.css"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <script src="vendors/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="scripts/logreg.min.js"></script>
+  <script src="scripts/main.min.js"></script>
+  <script src="scripts/view.min.js"></script>
+</head>
+<body>
+  <!-- LOGIN REGISTER HTML -->
+  <div class="holdall"></div>
+  <div class="ifRemembered">
+    <div class="logoLogRegContainer">
+      <div class="logodiv"><img src="images/logo.png" class="logologreg"/><span class="logotextlogreg">ChangeDJ</span></div>
+      <div class="logRegHold">
+      <div class="regShow">
+        <span class="loginRegText">Sign up</span>
+        <form>
+          <div>
+              <input type="text" name="username" placeholder="Username" class="regUser logReginput" />
+          </div>
+
+          <div>
+              <input type="password" name="password" placeholder="Password" class="passwordRegUser logReginput"/>
+          </div>
+          <div>
+              <input type="password" name="password" placeholder="Repeat Password" class="passwordRegUser2 logReginput"/>
+
+              <div class="regerrs logregerr"></div>
+          </div>
+          <div>
+              <button class="submitreg btn logregbtn">SUBMIT</button>
+          </div>
+          <div class="swapbtncontainer">
+            <span class="swaptext">If you already have an account click login.</span>
+            <div>
+                <button class="swapbtn btn orlogregbtn">LOGIN</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="loginShow">
+        <span class="loginRegText">Login</span>
+        <form>
+          <div>
+              <input type="text" class="loginUser logReginput" placeholder="Username"/>
+          </div>
+
+          <div>
+              <input type="password" class="passwordLoginUser logReginput" placeholder="Password"/>
+          </div>
+          <div class="rememberme">
+            <label>Remember Me: <input type="checkbox" class="remembercheckbox" checked/></label>
+          </div>
+          <div class="logerr logregerr">Login failed please try again.</div>
+          <div>
+              <button class="reqLogin btn logregbtn">SUBMIT</button>
+          </div>
+          <div class="swapbtncontainer">
+            <span class="swaptext">If you don't have an account yet click sign up.</span>
+            <div>
+              <button class="swapbtn btn orlogregbtn">SIGN UP</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- MAIN PAGE HTML -->
+
+  <div class="header">
+    <img src="images/logo.png" class="logo"/><span class="logoText">ChangeDJ</span>
+
+    <div class="rightContext">
+      <div class="option helpBtn"><img src="images/helpicon.png" class="contexticon icon1"/><span class="contexttext icon1 text1">Help</span></div>
+      <div class="option logOutBtn"><img src="images/logouticon.png" class="contexticon icon3"/><span class="contexttext text3">Log Out</span></div>
+    </div>
+  </div>
+
+  <div class="maincontentcontainer">
+    <div class="mainleftcontainer">
+      <div class="djqueue djqueueupper"><span class="boxheadertext">Current DJ</span>
+        <div class="queuebox">There is currently no one playing music.</div>
+        <div class="joindjqueue btn">Join</div>
+        <div class="leavedjqueue orlogregbtn">Leave DJ List</div>
+      </div>
+
+      <div class="leftcontaineroptioncontainer">
+        <div class="leftoptionbtnholder">
+          <div class="playlistcontainerbtn leftcontaineroptionbtn">Playlist</div>
+          <div class="addsongcontainerbtn leftcontaineroptionbtn orlogregbtn">Add Song</div>
+          <div class="userscontainerbtn leftcontaineroptionbtn orlogregbtn">Users List</div>
+          <div class="chatboxcontainerbtn leftcontaineroptionbtn orlogregbtn">Chat</div>
+        </div><div class="clearfix"></div>
+
+        <div class="leftcontaineroptionview">
+          <div class="playlistoptionview optionviewleft"><span class="nosongs">You currently have no songs in your playlist.</span><ul class="playlistviewlist"></ul></div>
+          <div class="addsongoptionview optionviewleft">
+            <input type="text" class="addsongsearch logReginput" placeholder="Search for song"/>
+            <ul class="searchvideosholder"></ul>
+          </div>
+          <div class="userlistoptionview optionviewleft"></div>
+          <div class="chatboxoptionview optionviewleft">
+            <div class="chatbody"><ul class="messagesholder"></ul></div>
+            <div class="inputmsgholder"><input type="text" class="messageinput logReginput" placeholder="Type your message here"/></div></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mainrightcontainer">
+      <div class="ytContainer">
+        <div id="player"></div><br>
+        <span class="videoTitleSpan"></span>
+      </div>
+
+      <div class="djqueue djqueuelower"><span class="boxheadertext">Current DJ</span>
+        <div class="queuebox">There is currently no one playing music.</div>
+        <div class="joindjqueue btn">Join</div>
+        <div class="leavedjqueue orlogregbtn">Leave DJ List</div>
+      </div>
+
+      <div class="chatbox rightcontaineroptioncontainer">
+        <div class="chatbody"><ul class="messagesholder"></ul></div>
+        <div class="inputmsgholder"><input type="text" class="messageinput logReginput" placeholder="Type your message here"/></div>
+      </div>
+    </div>
+  </div>
+
+<!-- HELP PAGE HTML -->
+<div class="helppagebg">
+</div>
+<div class="helpclasscontent">
+  <div class="stepone steps">
+    <span class="directions">Add songs to your playlist</span><br>
+    <img src="images/addsong.gif" class="helpimg"/>
+  </div>
+  <div class="steptwo steps">
+    <span class="directions">Remove unwanted songs from your playlist</span><br>
+    <img src="images/removesong.gif" class="helpimg"/>
+  </div>
+  <div class="stepthree steps">
+    <span class="directions">Adjust your playlist order</span><br>
+    <img src="images/adjust.gif" class="helpimg"/>
+  </div>
+  <div class="stepfour steps">
+    <span class="directions">Join the DJ list to start DJing!</span><br>
+    <img src="images/joinlist.gif" class="helpimg"/>
+  </div>
+
+<div class="navbtnhold"><div class="backbtn btn">&#8592;</div><div class="forwardbtn btn">&#8594;</div></div>
+</div>
+
+</body>
+</html>
