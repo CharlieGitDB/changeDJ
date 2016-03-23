@@ -1,4 +1,6 @@
 # ChangeDJ
+Technologies used: jQuery, Node.js, MongoDB(NoSQL Database)
+
 This is a full stack Node.js application. The point of the application is to allow users to create playlists and share music by rotating DJ's. This was created in under 10 days, so there is currently a noticable amount of bugs that are currently under construction.
 
 To install or edit:
